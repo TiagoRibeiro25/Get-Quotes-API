@@ -38,8 +38,8 @@ The API uses environment variables to store sensitive information such as databa
 
 To set up the .env file, copy the contents of the .env-sample file and replace the values with your own.
 
-    HOST=localhost
     PORT=3000
+    IP=localhost
     DB_URI=cluster0.abcde.mongodb.net
     DB_USERNAME=root
     DB_PASSWORD=123456
