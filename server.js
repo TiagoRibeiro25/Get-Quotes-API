@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const routes = require("./routes/routes");
 
-const IP = process.env.IP || "localhost";
+const HOSTNAME = process.env.HOSTNAME || "localhost";
 const PORT = process.env.PORT || 3000;
 const app = express();
 
@@ -21,4 +21,4 @@ app.use((req, res) => {
 	res.status(404).json({ error: "Not found" });
 });
 
-app.listen(PORT, IP, () => console.log(`Server listening at http://${IP}:${PORT}\n`));
+app.listen(PORT, HOSTNAME, () => console.log(`Server listening at http://${HOSTNAME}:${PORT}\n`));
