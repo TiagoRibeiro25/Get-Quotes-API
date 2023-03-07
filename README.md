@@ -40,7 +40,6 @@ To set up the .env file, copy the contents of the .env-sample file and replace t
 
     NODE_ENV=development
     PORT=3000
-    HOSTNAME=localhost
     DB_URI=cluster0.abcde.mongodb.net
     DB_USERNAME=root
     DB_PASSWORD=123456
