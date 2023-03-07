@@ -26,11 +26,12 @@ This will start the API at <http://localhost:3000> (or the host and port specifi
 
 ### Routes
 
-The API provides three routes to interact with a MongoDB database containing quotes:
+The API provides four routes to interact with a MongoDB database containing quotes:
 
     GET /api/status: Returns the status of the API and the database connection.
     GET /api/quotes: Returns all quotes in the database.
     GET /api/quotes/random: Returns a random quote from the database.
+    POST /api/quotes/add: Adds a new quote to the database.
 
 ### Environment Variables
 
@@ -44,6 +45,7 @@ To set up the .env file, copy the contents of the .env-sample file and replace t
     DB_USERNAME=root
     DB_PASSWORD=123456
     DB_NAME=quotes
+    AUTH_KEY=123456
 
 ### Dev Dependencies
 

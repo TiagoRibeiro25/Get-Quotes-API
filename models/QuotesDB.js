@@ -35,7 +35,7 @@ class QuotesDB {
 			const db = this.client.db(process.env.DB_NAME);
 			const collection = db.collection("quotes");
 			const quotes = await collection.find().toArray();
-			return quotes.map((quote) => ({ author: quote.author, quote: quote.content }));
+			return quotes.map((quote) => ({ author: quote.author, content: quote.content }));
 		} catch (error) {
 			console.log(`${new Date().toLocaleString()} - ${error}`);
 		}
@@ -49,7 +49,17 @@ class QuotesDB {
 				.aggregate([{ $sample: { size: 1 } }])
 				.toArray();
 
-			return { author: randomQuote[0].author, quote: randomQuote[0].content };
+			return { author: randomQuote[0].author, content: randomQuote[0].content };
+		} catch (error) {
+			console.log(`${new Date().toLocaleString()} - ${error}`);
+		}
+	}
+
+	async addQuote(quote) {
+		try {
+			const db = this.client.db(process.env.DB_NAME);
+			const collection = db.collection("quotes");
+			await collection.insertOne(quote);
 		} catch (error) {
 			console.log(`${new Date().toLocaleString()} - ${error}`);
 		}

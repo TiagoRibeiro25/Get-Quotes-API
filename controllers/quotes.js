@@ -1,5 +1,10 @@
 const quotesDB = require("../models/QuotesDB");
 
+function handleError(error) {
+	console.log(`${new Date().toLocaleString()} - ${error}`);
+	res.status(500).json({ error: "Internal server error" });
+}
+
 async function getQuotes(req, res) {
 	console.log(`${new Date().toLocaleString()} - Fetching all quotes...`);
 	try {
@@ -7,8 +12,7 @@ async function getQuotes(req, res) {
 		const quotes = await quotesDB.getQuotes();
 		res.status(200).json(quotes);
 	} catch (error) {
-		console.log(`${new Date().toLocaleString()} - ${error}`);
-		res.status(500).json({ error: "Internal server error" });
+		handleError(error);
 	} finally {
 		await quotesDB.disconnect();
 	}
@@ -21,11 +25,26 @@ async function getRandomQuote(req, res) {
 		const randomQuote = await quotesDB.getRandomQuote();
 		res.status(200).json(randomQuote);
 	} catch (error) {
-		console.log(`${new Date().toLocaleString()} - ${error}`);
-		res.status(500).json({ error: "Internal server error" });
+		handleError(error);
 	} finally {
 		await quotesDB.disconnect();
 	}
 }
 
-module.exports = { getQuotes, getRandomQuote };
+async function addQuote(req, res) {
+	if (req.headers.auth_key !== process.env.AUTH_KEY) {
+		return res.status(401).json({ error: "Unauthorized" });
+	}
+
+	console.log(`${new Date().toLocaleString()} - Adding a new quote...`);
+	try {
+		await quotesDB.connect();
+		await quotesDB.addQuote({ author: req.body.author, content: req.body.content });
+		res.status(200).json({ message: "Quote added successfully" });
+		await quotesDB.disconnect();
+	} catch (error) {
+		handleError(error);
+	}
+}
+
+module.exports = { getQuotes, getRandomQuote, addQuote };
