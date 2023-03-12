@@ -53,6 +53,10 @@ This project uses nodemon as a dev dependency. Nodemon is a utility that monitor
 
     npm run dev
 
+### Frontend
+
+This API is used by a frontend application built with React. You can find the frontend application [here](https://manage-quotes-api.netlify.app/) and the source code [here]( https://github.com/TiagoRibeiro25/Manage-Quotes-API-FrontEnd).
+
 ## Contributing
 
 Contributions are welcome! To contribute to this project, fork the repository and create a new branch for your feature or bug fix. When you are finished, submit a pull request and we will review your changes.
