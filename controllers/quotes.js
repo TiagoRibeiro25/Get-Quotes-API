@@ -58,7 +58,7 @@ async function deleteQuote(req, res) {
 		await quotesDB.connect();
 		const result = await quotesDB.deleteQuote(req.params.id);
 		if (!result) return res.status(404).json({ error: "Quote not found" });
-		else res.status(200).json({ message: "Quote deleted successfully" });
+		else res.status(204).json({ message: "Quote deleted successfully" });
 	} catch (error) {
 		handleError(error, res);
 	} finally {
