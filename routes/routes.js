@@ -12,4 +12,6 @@ router.get("/quotes/random", quotes.getRandomQuote);
 
 router.post("/quotes/add", quotes.addQuote);
 
+router.delete("/quotes/delete/:id", quotes.deleteQuote);
+
 module.exports = router;

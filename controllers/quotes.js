@@ -48,9 +48,22 @@ async function addQuote(req, res) {
 	}
 }
 
+async function deleteQuote(req, res) {
+	if (req.headers.auth_key !== process.env.AUTH_KEY) {
+		return res.status(401).json({ error: "Unauthorized" });
+	}
+
+	console.log(`${new Date().toLocaleString()} - Deleting a quote...`);
+	try {
+		await quotesDB.connect();
+		const result = await quotesDB.deleteQuote(req.params.id);
+		if (!result) return res.status(404).json({ error: "Quote not found" });
+		else res.status(200).json({ message: "Quote deleted successfully" });
 	} catch (error) {
-		handleError(error);
+		handleError(error, res);
+	} finally {
+		await quotesDB.disconnect();
 	}
 }
 
-module.exports = { getQuotes, getRandomQuote, addQuote };
+module.exports = { getQuotes, getRandomQuote, addQuote, deleteQuote };

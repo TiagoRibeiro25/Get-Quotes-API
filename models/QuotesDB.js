@@ -64,6 +64,15 @@ class QuotesDB {
 			throw new Error("Error adding quote");
 		}
 	}
+
+	async deleteQuote(id) {
+		try {
+			const db = this.client.db(process.env.DB_NAME);
+			const collection = db.collection("quotes");
+			const result = await collection.deleteOne({ _id: new mongodb.ObjectId(id) });
+			return !result.deletedCount == 0;
+		} catch (error) {
+			throw new Error("Error deleting quote");
 		}
 	}
 }
