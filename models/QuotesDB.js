@@ -16,7 +16,7 @@ class QuotesDB {
 			await this.client.connect();
 			console.log(`${new Date().toLocaleString()} - Connected to MongoDB`);
 		} catch (error) {
-			console.error(`${new Date().toLocaleString()} - ${error}`);
+			throw new Error("Error connecting to MongoDB");
 		}
 	}
 
@@ -26,7 +26,7 @@ class QuotesDB {
 			await this.client.close();
 			console.log(`${new Date().toLocaleString()} - Disconnected from MongoDB\n\n`);
 		} catch (error) {
-			console.log(`${new Date().toLocaleString()} - ${error}\n`);
+			throw new Error("Error disconnecting from MongoDB");
 		}
 	}
 
@@ -37,7 +37,7 @@ class QuotesDB {
 			const quotes = await collection.find().toArray();
 			return quotes;
 		} catch (error) {
-			console.log(`${new Date().toLocaleString()} - ${error}`);
+			throw new Error("Error fetching quotes");
 		}
 	}
 
@@ -51,7 +51,7 @@ class QuotesDB {
 
 			return randomQuote[0];
 		} catch (error) {
-			console.log(`${new Date().toLocaleString()} - ${error}`);
+			throw new Error("Error fetching random quote");
 		}
 	}
 
@@ -61,7 +61,9 @@ class QuotesDB {
 			const collection = db.collection("quotes");
 			await collection.insertOne(quote);
 		} catch (error) {
-			console.log(`${new Date().toLocaleString()} - ${error}`);
+			throw new Error("Error adding quote");
+		}
+	}
 		}
 	}
 }
