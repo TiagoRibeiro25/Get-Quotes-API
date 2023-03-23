@@ -1,6 +1,6 @@
 # Node.js API with Express and MongoDB
 
-This is a Node.js API built with Express and MongoDB. It provides three routes to interact with a MongoDB database containing quotes.
+This is a Node.js API built with Express and MongoDB. It provides five routes to interact with a MongoDB database containing quotes.
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ To get started, clone this repository to your local machine and install the depe
 
 ### Prerequisites
 
-You will need Node.js, NPM and MongoDB installed on your machine to run this API (you can use the MongoDB Atlas cloud service if you don't want to install MongoDB locally).
+You will need Node.js, NPM and MongoDB installed on your machine to run this API (you can use the MongoDB Atlas cloud service instead if you don't want to install MongoDB locally).
 
 ### Installing
 
@@ -22,7 +22,7 @@ To run the API, use the following command:
 
     npm start
 
-This will start the API at <http://localhost:3000> (or the host and port specified in the .env file)
+This will start the API at <http://localhost:3000> (or the port specified in the .env file)
 
 ### Routes
 
@@ -32,6 +32,7 @@ The API provides four routes to interact with a MongoDB database containing quot
     GET /api/quotes: Returns all quotes in the database.
     GET /api/quotes/random: Returns a random quote from the database.
     POST /api/quotes/add: Adds a new quote to the database.
+    DELETE /api/quotes/delete/:id: Deletes a quote from the database.
 
 ### Environment Variables
 
