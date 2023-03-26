@@ -31,8 +31,8 @@ The API provides four routes to interact with a MongoDB database containing quot
     GET /api/status: Returns the status of the API and the database connection.
     GET /api/quotes: Returns all quotes in the database.
     GET /api/quotes/random: Returns a random quote from the database.
-    POST /api/quotes/add: Adds a new quote to the database.
-    DELETE /api/quotes/delete/:id: Deletes a quote from the database.
+    POST /api/quotes: Adds a new quote to the database.
+    DELETE /api/quotes/:id: Deletes a quote from the database.
 
 ### Environment Variables
 

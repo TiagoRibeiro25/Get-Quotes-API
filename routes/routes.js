@@ -10,8 +10,8 @@ router.get("/quotes", quotes.getQuotes);
 
 router.get("/quotes/random", quotes.getRandomQuote);
 
-router.post("/quotes/add", quotes.addQuote);
+router.post("/quotes", quotes.addQuote);
 
-router.delete("/quotes/delete/:id", quotes.deleteQuote);
+router.delete("/quotes/:id", quotes.deleteQuote);
 
 module.exports = router;
