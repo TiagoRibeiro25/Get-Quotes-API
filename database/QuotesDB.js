@@ -11,20 +11,16 @@ class QuotesDB {
 	}
 
 	async connect() {
-		console.log(`${new Date().toLocaleString()} - Connecting to MongoDB...`);
 		try {
 			await this.client.connect();
-			console.log(`${new Date().toLocaleString()} - Connected to MongoDB`);
 		} catch (error) {
 			throw new Error("Error connecting to MongoDB");
 		}
 	}
 
 	async disconnect() {
-		console.log(`${new Date().toLocaleString()} - Disconnecting from MongoDB...`);
 		try {
 			await this.client.close();
-			console.log(`${new Date().toLocaleString()} - Disconnected from MongoDB\n\n`);
 		} catch (error) {
 			throw new Error("Error disconnecting from MongoDB");
 		}

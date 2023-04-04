@@ -1,6 +1,6 @@
 const express = require("express");
-const quotes = require("../controllers/quotes");
-const status = require("../controllers/status");
+const quotes = require("../controllers/quotes.controllers");
+const status = require("../controllers/status.controllers");
 
 const router = express.Router();
 

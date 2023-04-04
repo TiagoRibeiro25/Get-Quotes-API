@@ -1,12 +1,10 @@
-const quotesDB = require("../models/QuotesDB");
+const quotesDB = require("../database/QuotesDB");
 
 function handleError(error, res) {
-	console.log(`${new Date().toLocaleString()} - ${error}`);
 	res.status(500).json({ error: "Internal server error" });
 }
 
 async function getQuotes(req, res) {
-	console.log(`${new Date().toLocaleString()} - Fetching all quotes...`);
 	try {
 		await quotesDB.connect();
 		const quotes = await quotesDB.getQuotes();
@@ -19,7 +17,6 @@ async function getQuotes(req, res) {
 }
 
 async function getRandomQuote(req, res) {
-	console.log(`${new Date().toLocaleString()} - Fetching a random quote...`);
 	try {
 		await quotesDB.connect();
 		const randomQuote = await quotesDB.getRandomQuote();
@@ -36,7 +33,6 @@ async function addQuote(req, res) {
 		return res.status(401).json({ error: "Unauthorized" });
 	}
 
-	console.log(`${new Date().toLocaleString()} - Adding a new quote...`);
 	try {
 		await quotesDB.connect();
 		await quotesDB.addQuote({ author: req.body.author, content: req.body.content });
@@ -53,7 +49,6 @@ async function deleteQuote(req, res) {
 		return res.status(401).json({ error: "Unauthorized" });
 	}
 
-	console.log(`${new Date().toLocaleString()} - Deleting a quote...`);
 	try {
 		await quotesDB.connect();
 		const result = await quotesDB.deleteQuote(req.params.id);
