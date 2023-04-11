@@ -11,11 +11,7 @@ class QuotesDB {
 	}
 
 	async connect() {
-		try {
-			await this.client.connect();
-		} catch (error) {
-			throw new Error("Error connecting to MongoDB");
-		}
+		await this.client.connect();
 	}
 
 	async disconnect() {
@@ -27,49 +23,30 @@ class QuotesDB {
 	}
 
 	async getQuotes() {
-		try {
-			const db = this.client.db(process.env.DB_NAME);
-			const collection = db.collection("quotes");
-			const quotes = await collection.find().toArray();
-			return quotes;
-		} catch (error) {
-			throw new Error("Error fetching quotes");
-		}
+		const db = this.client.db(process.env.DB_NAME);
+		const collection = db.collection("quotes");
+		const quotes = await collection.find().toArray();
+		return quotes;
 	}
 
 	async getRandomQuote() {
-		try {
-			const db = this.client.db(process.env.DB_NAME);
-			const collection = db.collection("quotes");
-			const randomQuote = await collection
-				.aggregate([{ $sample: { size: 1 } }])
-				.toArray();
-
-			return randomQuote[0];
-		} catch (error) {
-			throw new Error("Error fetching random quote");
-		}
+		const db = this.client.db(process.env.DB_NAME);
+		const collection = db.collection("quotes");
+		const randomQuote = await collection.aggregate([{ $sample: { size: 1 } }]).toArray();
+		return randomQuote[0];
 	}
 
 	async addQuote(quote) {
-		try {
-			const db = this.client.db(process.env.DB_NAME);
-			const collection = db.collection("quotes");
-			await collection.insertOne(quote);
-		} catch (error) {
-			throw new Error("Error adding quote");
-		}
+		const db = this.client.db(process.env.DB_NAME);
+		const collection = db.collection("quotes");
+		await collection.insertOne(quote);
 	}
 
 	async deleteQuote(id) {
-		try {
-			const db = this.client.db(process.env.DB_NAME);
-			const collection = db.collection("quotes");
-			const result = await collection.deleteOne({ _id: new mongodb.ObjectId(id) });
-			return !result.deletedCount == 0;
-		} catch (error) {
-			throw new Error("Error deleting quote");
-		}
+		const db = this.client.db(process.env.DB_NAME);
+		const collection = db.collection("quotes");
+		const result = await collection.deleteOne({ _id: new mongodb.ObjectId(id) });
+		return !result.deletedCount == 0;
 	}
 }
 
