@@ -54,6 +54,12 @@ This project uses nodemon as a dev dependency. Nodemon is a utility that monitor
 
     npm run dev
 
+### Testing
+
+This project uses Jest and Axios to test the API. To run the tests, run the server and use the following command:
+
+  npm run test
+
 ### Frontend
 
 This API is used by a frontend application built with React. You can find the frontend application [here](https://manage-quotes-api.netlify.app/) and the source code [here]( https://github.com/TiagoRibeiro25/Manage-Quotes-API-FrontEnd).
