@@ -58,7 +58,13 @@ This project uses nodemon as a dev dependency. Nodemon is a utility that monitor
 
 This project uses Jest and Axios to test the API. To run the tests, run the server and use the following command:
 
-  npm run test
+    npm run test
+
+### Linting
+
+This project uses ESLint to lint the code. To lint the code, use the following command:
+
+    npm run lint
 
 ### Frontend
 

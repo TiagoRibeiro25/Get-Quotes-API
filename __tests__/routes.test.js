@@ -30,7 +30,7 @@ function getTestQuote(quotes) {
 }
 
 describe("GET /status", () => {
-	it('should return a 200 status code and "OK" status', async () => {
+	it("should return a 200 status code and \"OK\" status", async () => {
 		const response = await axios.get(`${host}/status`);
 		expect(response.status).toBe(200);
 		expect(response.data.status).toBe("OK");
