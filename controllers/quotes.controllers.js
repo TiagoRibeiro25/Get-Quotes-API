@@ -54,8 +54,6 @@ async function deleteQuote(req, res) {
 		await quotesDB.deleteQuote(req.params.id);
 		res.status(204).json({ message: "Quote deleted successfully" });
 	} catch (error) {
-		console.log(error.name);
-
 		// if the error is a MongoError, then the id is valid but the quote is not found
 		if (error.name === "BSONError") res.status(404).json({ error: "Quote not found" });
 		// if the error is a different error, then it's an internal server error
